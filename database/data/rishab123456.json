@@ -1,0 +1,34 @@
+[
+   {
+      "id": "rishab123456.1",
+      "text": "clean desktop",
+      "completed": false,
+      "priority": "Low",
+      "date": "15 Aug 2025",
+      "subText": "clean desktop other wise you are fucked up"
+    },
+   {
+      "id": "rishab123456.2",
+      "text": "cook",
+      "completed": false,
+      "priority": "Low",
+      "date": "15 Aug 2025",
+      "subText": "cook other wise you are fucked up"
+    },
+   {
+      "id": "rishab123456.3",
+      "text": "finish todo backend",
+      "completed": false,
+      "priority": "Low",
+      "date": "15 Aug 2025",
+      "subText": "finish todo backend other wise you are fucked up"
+    },
+   {
+      "id": "rishab123456.4",
+      "text": "connect backend with frontend",
+      "completed": false,
+      "priority": "Low",
+      "date": "17 Aug 2025",
+      "subText": "connect backend with frontend other wise you are fucked up"
+    }
+]

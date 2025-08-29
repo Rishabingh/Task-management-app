@@ -1,0 +1,17 @@
+[
+  {
+    "username": "rishab",
+    "password": "123456",
+    "path": "./data/rishab.json"
+  },
+  {
+    "username": "ris",
+    "password": "123456",
+    "path": "./data/ris.json"
+  },
+  {
+    "username": "raju",
+    "password": "raju456",
+    "url": "./data/raju.json"
+  }
+]

@@ -151,7 +151,27 @@ document.addEventListener("DOMContentLoaded", () => {
  function savingLocal() {
   localStorage.setItem('tasksai', JSON.stringify(tasks));
  }
+  
 
+ async function fetchTodo() {
+try {
+  const response = await fetch("http://localhost:8000/api/login", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      username: "rishab",
+      password: "123456"
+    })
+  });
+
+  console.log(response);
+  const data = await response.json();
+  console.log(data);
+} catch (error) {
+  console.log(error);
+}
+}
+fetchTodo();
 });
 
 /*
