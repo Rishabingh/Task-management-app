@@ -7,12 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const now = new Date();
   const options = { day: "numeric", month: "short", year: "numeric" };
 
-  let tasks = JSON.parse(localStorage.getItem('tasksai')) || [];
 
-  if (tasks.length > 0) {
+  const { username, password } = JSON.parse(localStorage.getItem('credentials'));
+  let tasks = [];
+  
+  async function initalizeApp() {
+   await LoadingTodo();
+
+    if (tasks.length > 0) {
   // If there are saved tasks, render them otherwise it will show hardcoded task in html;
-  tasksLoop();
-}
+    tasksLoop();
+    }
+  }
+  initalizeApp();
+
 
   function tasksLoop() {
      container.replaceChildren();
@@ -46,7 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
     tasks.push(taskObj);
     inputBar.value = "";
     tasksLoop();
-    savingLocal();
+    
+    savingTodo();
   }
 
   function flagColor(priority) {
@@ -123,7 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
      const delId = Number(element.id);
      tasks = tasks.filter(task => task.id !== delId);
      tasksLoop();
-     savingLocal();
+     
+     savingTodo();
   });
     });
 
@@ -140,38 +150,75 @@ document.addEventListener("DOMContentLoaded", () => {
         tasks[position].completed = !tasks[position].completed;
       }
       tasksLoop();
-      savingLocal();
+      
+      savingTodo();
       
     });
   });
 
 
  }
-  
- function savingLocal() {
-  localStorage.setItem('tasksai', JSON.stringify(tasks));
- }
-  
 
- async function fetchTodo() {
-try {
-  const response = await fetch("http://localhost:8000/api/login", {
+  function savingUserDataLocal() {
+  const userCredentials = {
+  username: "rishab",
+  password: "123456",
+ }
+  localStorage.setItem('credentials', JSON.stringify(userCredentials));
+ }
+ savingUserDataLocal();
+
+
+ async function savingTodo() {
+    try {
+    const response = await fetch("http://localhost:8000/api/save", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
-      username: "rishab",
-      password: "123456"
+      username,
+      password,
+      todo: tasks
     })
   });
-
+  if(response.ok) {
   console.log(response);
   const data = await response.json();
-  console.log(data);
-} catch (error) {
-  console.log(error);
-}
-}
-fetchTodo();
+  if(data.success) {
+     console.log(data);
+  } else console.log(data.error);
+  
+  } else throw new Error("something went wrong data didnt saved");
+    } catch (error) {
+      console.log(error);
+    } 
+ }
+
+
+ async function LoadingTodo() {
+    try {
+    const response = await fetch("http://localhost:8000/api/send", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      username,
+      password,
+    })
+  });
+  if(response.ok) {
+  console.log(response);
+  const data = await response.json();
+  if(data.success) {
+     console.log(data);
+     tasks = data.data || []
+  } else console.log(data.error);
+  
+  } else throw new Error("something went wrong data didnt saved");
+    } catch (error) {
+      console.log(error);
+    } 
+ }
+ 
+
 });
 
 /*

@@ -1,34 +1,42 @@
 [
-   {
-      "id": "rishab123456.1",
-      "text": "clean desktop",
-      "completed": false,
-      "priority": "Low",
-      "date": "15 Aug 2025",
-      "subText": "clean desktop other wise you are fucked up"
-    },
-   {
-      "id": "rishab123456.2",
-      "text": "cook",
-      "completed": false,
-      "priority": "Low",
-      "date": "15 Aug 2025",
-      "subText": "cook other wise you are fucked up"
-    },
-   {
-      "id": "rishab123456.3",
-      "text": "finish todo backend",
-      "completed": false,
-      "priority": "Low",
-      "date": "15 Aug 2025",
-      "subText": "finish todo backend other wise you are fucked up"
-    },
-   {
-      "id": "rishab123456.4",
-      "text": "connect backend with frontend",
-      "completed": false,
-      "priority": "Low",
-      "date": "17 Aug 2025",
-      "subText": "connect backend with frontend other wise you are fucked up"
-    }
+  {
+    "id": 1756526418506,
+    "text": "clean desktop",
+    "completed": false,
+    "priority": "Low",
+    "date": "30 Aug 2025",
+    "subText": ""
+  },
+  {
+    "id": 1756527259795,
+    "text": "finish 2nd project",
+    "completed": false,
+    "priority": "Low",
+    "date": "30 Aug 2025",
+    "subText": ""
+  },
+  {
+    "id": 1756527288571,
+    "text": "finish this todo project",
+    "completed": false,
+    "priority": "Low",
+    "date": "30 Aug 2025",
+    "subText": ""
+  },
+  {
+    "id": 1756527328235,
+    "text": "finish ai carrer adviser",
+    "completed": false,
+    "priority": "Low",
+    "date": "30 Aug 2025",
+    "subText": ""
+  },
+  {
+    "id": 1756527340663,
+    "text": "do ignou subjects",
+    "completed": false,
+    "priority": "Low",
+    "date": "30 Aug 2025",
+    "subText": ""
+  }
 ]
