@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../src/output.css" rel="stylesheet">
+  <title>Login/SignUp Page</title>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="main">
+    <div class="border border-gray-400 p-4 flex flex-col items-center bg-gray-800 gap-6 min-w-3xs hidden" id="login">
+      <h2 class="text-2xl text-pink-400">Log In</h2>
+      <form action="" id="login" class="flex flex-col items-center gap-4">
+        <label for="email-or-username">Enter Username Or Email:</label>
+        <input type="text" id="email-or-username" placeholder="Enter your credentials" class="p-2 border border-gray-600" required autocomplete="Username">
+        <label for="password">Enter password:</label>
+        <input type="password" id="password" placeholder="Enter your Password" class="p-2 border border-gray-600"  required autocomplete="current-password">
+        <div class="bg-gray-500 p-2 rounded-2xl flex gap-3">
+          <input type="checkbox" name="bot" id="bot" required>
+          <label for="bot">I'm Not a Bot 🤖</label>
+        </div>
+        <button type="submit" class="bg-pink-600 rounded-2xl hover:bg-pink-400 transition-all delay-75 duration-200 ease-in-out py-3 px-5 hover:text-gray-950" id="log-button">Log In</button>
+      </form>
+    </div>
+
+
+    <div class="signup border border-gray-400 p-4 flex flex-col items-center bg-gray-800 gap-6 min-w-3xs" id="signup">
+      <h2 class="text-2xl text-pink-400">Sign Up</h2>
+      <form action="" id="register" class="flex flex-col items-center gap-4">
+        <label for="r-username">*Enter Username:</label>
+        <input type="text" id="r-username" placeholder="select a unique username" class="p-2 border border-gray-600" required autocomplete="Username">
+        <label for="r-email">*Enter Email:</label>
+        <input type="email" id="r-email" placeholder="Enter a Email" class="p-2 border border-gray-600" required autocomplete="email">
+        <label for="r-avatar">Enter Avatar Url:</label>
+        <input type="text" id="r-avatar" placeholder="Enter Avatar Url" class="p-2 border border-gray-600">
+        <label for="r-password">*Enter password:</label>
+        <input type="password" id="r-password" placeholder="Enter your Password" class="p-2 border border-gray-600"  required autocomplete="new-password">
+        <div class="bg-gray-500 p-2 rounded-2xl flex gap-3">
+          <input type="checkbox" name="bot" id="r-bot" required>
+          <label for="r-bot">I'm Not a Bot 🤖</label>
+        </div>
+        <button type="submit" class="bg-pink-600 rounded-2xl hover:bg-pink-400 transition-all delay-75 duration-200 ease-in-out py-3 px-5 hover:text-gray-950" id="sign-button">Sign Up</button>
+      </form>
+    </div>
+
+    <div class="swap bg-pink-900 p-3 rounded-2xl mt-2">
+      Already Have A Account? Log In->
+    </div>
+  </div>
+  <script src="login.js"></script>
+</body>
+</html>

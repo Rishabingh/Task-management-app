@@ -1,47 +1,23 @@
-function validateLoginPayload(req, res, next) {
-  const {username, password} = req.body;
+import { asyncHandler } from "../utils/asyncHandler.js"
+import jwt from 'jsonwebtoken';
+import ApiError from "../utils/apiError.js";
+import { User } from "../models/user.models.js";
 
-  if (!username || !password) return res.status(401).json({ error: "no credentials" });
+export const verifyingJwt = asyncHandler(async (req, res, next) => {
+  const token = req.cookies.accessToken;
 
-  next();
-}
+  if(!token) throw new ApiError(401, "looks like token expired, try to refresh the token");
 
-function validateRegisterPayLoad(req, res, next) {
-  const {username, password} = req.body;
-  
-  if (username === "" || password === "") {
-    return res.status(401).json({
-      error: "password or username can't be empty"
-    });
+  try {
+    const decodedToken = jwt.verify(token, process.env.ACCESS_SECRET);
+    if(!decodedToken) throw new ApiError(400, "unathorized access")
+
+    const user = await User.findById(decodedToken._id);
+    if(!user) throw new ApiError(400, "unathorized access")
+
+    req.user = user
+    next()
+  } catch (error) {
+    throw new ApiError(403, "invalid token, something went wrong at auth.middleware.js")
   }
-  next();
-}
-
-function validateSendTodoPayLoad(req, res, next) {
-    const { username, password } = req.body;
-  
-  if (username === "" || password === "") {
-    return res.status(401).json({
-      error: "todo can't be accessed without valid token"
-    });
-  }
-  next();
-}
-
-function validateSaveTodoPayLoad(req, res, next) {
-    const { username, password } = req.body;
-  
-  if (username === "" || password === "") {
-    return res.status(401).json({
-      error: "todo can't be accessed without valid token"
-    });
-  }
-  next();
-}
-
-export { 
-  validateLoginPayload,
-  validateRegisterPayLoad,
-  validateSendTodoPayLoad,
-  validateSaveTodoPayLoad
- }
+})

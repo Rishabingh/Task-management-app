@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <link rel="stylesheet" href="src/output.css" />
+  </head>
+  <body
+    class="flex flex-col items-center min-h-screen bg-gray-900 text-gray-100 p-4"
+  >
+    <div class="main w-full max-w-md">
+      <div class="input flex flex-col gap-2">
+        <div class="1st-line flex gap-2 items-end">
+          <div class="flex flex-col flex-grow">
+            <label for="todo-title" class="text-sm text-gray-400 mb-1"
+              >Title</label
+            >
+            <input
+              id="todo-title"
+              type="text"
+              placeholder="What do you need to do?"
+              class="p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500"
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <label for="priority-select" class="text-sm text-gray-400 mb-1"
+              >Priority</label
+            >
+            <select
+              id="priority-select"
+              class="border-pink-600 border focus:ring-pink-500 bg-gray-800 rounded p-2 h-full"
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+        </div>
+        <div class="2nd-line mt-2">
+          <label for="todo-subtext" class="text-sm text-gray-400 mb-1"
+            >Details (Optional)</label
+          >
+          <textarea
+            id="todo-subtext"
+            placeholder="Enter subtext"
+            class="w-full p-2 rounded bg-gray-800 border border-gray-600 resize-none overflow-y-auto focus:outline-none focus:ring-2 focus:ring-pink-500"
+            rows="1"
+          ></textarea>
+        </div>
+        <button
+          class="bg-pink-600 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded transition-colors duration-200 mt-4 add-todo-button"
+        >
+          +Add Todo
+        </button>
+      </div>
+
+      <div class="error-result hidden text-red-600 mt-4"></div>
+      <div class="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mt-4 self-center justify-self-center spinner hidden"></div>
+
+      <div class="todos flex flex-col mt-8">
+        <div
+          class="todo flex flex-col bg-gray-800 border border-pink-600 shadow-lg p-4 mt-4 rounded-xl font-mono gap-3"
+        >
+          
+          <div class="line-1 flex justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+              <input
+                id="todo-checkbox-1"
+                type="checkbox"
+                class="peer h-5 w-5 rounded border-gray-600 bg-gray-700 text-pink-600 focus:ring-pink-500"
+              />
+
+              <label
+                for="todo-checkbox-1"
+                class="font-bold text-lg text-gray-100 cursor-pointer transition-colors peer-checked:line-through peer-checked:text-gray-500"
+              >
+                This is the Title
+              </label>
+            </div>
+
+            <button
+              class="flex-shrink-0 p-1.5 rounded-full hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-500"
+            >
+              <img src="images/delete.svg" alt="Delete todo" class="w-5 h-5" />
+            </button>
+          </div>
+
+          <div class="line-2 text-gray-300">
+            this is the subtext the conqueror of titles and slayer of text areas
+          </div>
+
+          <hr class="border-gray-700" />
+
+          <div class="line-3 flex items-center gap-4 text-sm">
+            <div class="flex items-center gap-2">
+              <span class="text-gray-400">Priority:</span>
+              <span
+                class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-900 text-green-300"
+                >Low</span
+              >
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="text-gray-400">Date:</span>
+              <span class="text-xs font-medium text-gray-300">15 Aug 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

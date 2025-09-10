@@ -1,52 +1,71 @@
 import express from 'express';
+import { __dirname } from '../path.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import logInRoutes from "../routes/login.routes.js";
-import registerRoutes from "../routes/register.routes.js"
-import sendRoutes from "../routes/todo-send.routes.js"
-import saveRoutes from "../routes/todo-save.routes.js";
+import { connectDb } from '../db/index.js';
+import path from 'path'
+import errorHandler from '../utils/errorHandler.js'
+import userRoute from '../routes/user.routes.js';
+import healthCheck from '../routes/healthcheck.routes.js';
+import cookieParser from 'cookie-parser';
+import todoRouter from '../routes/todo.routes.js'
 
 dotenv.config({
-  path: "./.env"
+  path: path.join(__dirname, ".env")
 });
 
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+  credential: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+}))
 
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Authorization", "Content-Type"]
-  })
-);
+app.use(express.json({limit: "16kb"}));
+app.use(express.static(path.join(__dirname, "frontend")));
+app.use(express.urlencoded({limit: "16kb"}));
+app.use(cookieParser());
 
-app.use(express.json({
-  limit: "32kb"
-}));
-
-app.use(express.urlencoded({
-  extended: "true",
-  limit: "16kb"
-}));
-
-app.use(express.static(path.join(__dirname, "../frontend")));
+const port = process.env.PORT
+const host = process.env.HOST
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/todo.html"));
+  res.sendFile(path.join(__dirname, "frontend", "index.html"))
+})
+
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "login.html"))
+})
+
+
+app.get('/src/output.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'output.css'));
 });
-
-app.use("/api", logInRoutes);
-app.use("/api", registerRoutes);
-app.use("/api", sendRoutes);
-app.use("/api", saveRoutes);
-
-app.listen(process.env.PORT, process.env.HOST, () => {
-  console.log(`server is running on port: ${process.env.PORT}and host: ${process.env.HOST}`);
-}); 
+app.use("/api/v2/user", userRoute);
+app.use("/api/v2/todo", todoRouter);
+app.use("/api/v2/health-check", healthCheck);
 
 
+
+app.use(errorHandler)
+
+connectDb()
+  .then(
+    app.listen(port, host, () => {
+      console.log(`app is constantly listening on port: ${port} and on host: ${host}`)
+    })
+  ).catch(err => console.log("server req failed ❌", err));
+
+
+  /*
+      cloudinary.config({ 
+        cloud_name: 'dzwlqc5xt', 
+        api_key: '833569824221893', 
+        api_secret: 'usp0cWTDvNfLf1EUnOJC5ZkZMrs'
+    });
+
+      secret -> usp0cWTDvNfLf1EUnOJC5ZkZMrs
+
+    */
