@@ -1,0 +1,1 @@
+A task managment app includes jwt token for authorization user using refresh and access token, have password hashing for privacy, team collabration feature, includes note taking, todos, and task management and sharing them with team for team collab, user registration , and login and account management , multer for img handling , mogo db atlas db
