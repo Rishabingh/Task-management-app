@@ -58,14 +58,3 @@ connectDb()
     })
   ).catch(err => console.log("server req failed ❌", err));
 
-
-  /*
-      cloudinary.config({ 
-        cloud_name: 'dzwlqc5xt', 
-        api_key: '833569824221893', 
-        api_secret: 'usp0cWTDvNfLf1EUnOJC5ZkZMrs'
-    });
-
-      secret -> usp0cWTDvNfLf1EUnOJC5ZkZMrs
-
-    */
